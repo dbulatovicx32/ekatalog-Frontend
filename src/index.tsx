@@ -13,6 +13,7 @@ import HomePage from './components/HomePage/HomePage';
 import ContactPage from './components/ContactPage/ContactPage';
 import CategoryPage from './components/CategoryPage/CategoryPage';
 import UserLoginPage from './components/UserLoginPage/UserLoginPage';
+import UserRegistrationPage from './components/UserRegistrationPage/UserRegistrationPage';
 
 const menuItems = [
   new MainMenuItem("Home", "/"),
@@ -29,7 +30,7 @@ ReactDOM.render(
         <Route exact path="/" component={HomePage} />
         <Route path="/contact" component={ContactPage} />
         <Route path="/user/login" component={UserLoginPage} />
-
+        <Route path="/user/register" component={UserRegistrationPage} />
         <Route path="/category/:cId" component={CategoryPage} />
       </Switch>
     </HashRouter>
