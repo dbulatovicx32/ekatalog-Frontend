@@ -28,11 +28,13 @@ export default class HomePage extends React.Component {
     };
   }
 
-  private setUserLoggedInState(state: boolean) {
-    this.setState(Object.assign(this.state, {
-      isUserLoggedIn: state,
-    }));
-  }
+  private setLogginState(isLoggedIn: boolean) {
+    const newState = Object.assign(this.state, {
+        isUserLoggedIn: isLoggedIn,
+    });
+
+    this.setState(newState);
+}
 
   private setCategories(categories: CategoryType[]) {
     this.setState(Object.assign(this.state, {
@@ -87,7 +89,7 @@ export default class HomePage extends React.Component {
     api('/api/category/', 'get', {})
     .then((res: ApiResponse) => {
       if (res.status === 'error' || res.status === 'login') {
-        this.setUserLoggedInState(false);
+        this.setLogginState(false);
         return;
       }
       this.storeCategoriesIntoTheState(res.data);
@@ -113,7 +115,9 @@ export default class HomePage extends React.Component {
     this.getCategories();
   }
 
-  componentDidUpdate() {
-    this.getCategories();
-  }
+  // componentDidUpdate() {
+  //   this.getCategories();
+  // }
+
+  
 }

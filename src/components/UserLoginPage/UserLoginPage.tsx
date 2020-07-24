@@ -40,7 +40,7 @@ export default class UserLoginPage extends React.Component {
         }
 
         const newState = Object.assign(this.state, {
-            [ stateFieldName ]: event.target.value,
+            [stateFieldName]: event.target.value,
         });
 
         this.setState(newState);
@@ -65,25 +65,25 @@ export default class UserLoginPage extends React.Component {
         };
 
         api('/auth/user/login', 'post', data)
-        .then((res: ApiResponse) => {
-            if (res.status === 'error') {
-                this.setMessage('There was an error. Please try again!');
-                return;
-            }
-
-            if (res.data.statusCode !== undefined) {
-                switch (res.data.statusCode) {
-                    case -3001: this.setMessage('This user does not exist!'); break;
-                    case -3002: this.setMessage('Bad password!'); break;
+            .then((res: ApiResponse) => {
+                if (res.status === 'error') {
+                    this.setMessage('There was an error. Please try again!');
+                    return;
                 }
-                return;
-            }
 
-            saveToken(res.data.token);
-            saveRefreshToken(res.data.refreshToken);
+                if (res.data.statusCode !== undefined) {
+                    switch (res.data.statusCode) {
+                        case -3001: this.setMessage('This user does not exist!'); break;
+                        case -3002: this.setMessage('Bad password!'); break;
+                    }
+                    return;
+                }
 
-            this.setLoggedInState(true);
-        });
+                saveToken('user', res.data.token);
+                saveRefreshToken('user', res.data.refreshToken);
+
+                this.setLoggedInState(true);
+            });
     }
 
     render() {
@@ -95,37 +95,37 @@ export default class UserLoginPage extends React.Component {
 
         return (
             <Container>
-                <Col md={ { span: 6, offset: 3 } }>
+                <Col md={{ span: 6, offset: 3 }}>
                     <Card>
                         <Card.Body>
                             <Card.Title>
-                                <FontAwesomeIcon icon={ faSignInAlt } /> User Login
+                                <FontAwesomeIcon icon={faSignInAlt} /> User Login
                             </Card.Title>
 
                             <Form>
                                 <Form.Group>
                                     <Form.Label htmlFor="email">E-mail:</Form.Label>
                                     <Form.Control type="email" id="email"
-                                                  value={ this.state.email }
-                                                  onChange={ (event) => this.handleFormInputChange(event as any) } />
+                                        value={this.state.email}
+                                        onChange={(event) => this.handleFormInputChange(event as any)} />
                                 </Form.Group>
                                 <Form.Group>
                                     <Form.Label htmlFor="password">Password:</Form.Label>
                                     <Form.Control type="password" id="password"
-                                                  value={ this.state.password }
-                                                  onChange={ (event) => this.handleFormInputChange(event as any) } />
+                                        value={this.state.password}
+                                        onChange={(event) => this.handleFormInputChange(event as any)} />
                                 </Form.Group>
                                 <Form.Group>
                                     <Button variant="primary" block
-                                            onClick={ () => this.doLogin() }>
-                                        <FontAwesomeIcon icon={ faSignInAlt } /> Log in
+                                        onClick={() => this.doLogin()}>
+                                        <FontAwesomeIcon icon={faSignInAlt} /> Log in
                                     </Button>
                                 </Form.Group>
                             </Form>
 
                             <Alert variant="danger"
-                                   className={ this.state.message ? '' : 'd-none' }>
-                                { this.state.message }
+                                className={this.state.message ? '' : 'd-none'}>
+                                {this.state.message}
                             </Alert>
                         </Card.Body>
                     </Card>
