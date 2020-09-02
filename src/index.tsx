@@ -7,7 +7,6 @@ import 'jquery/dist/jquery.js';
 import 'popper.js/dist/popper.js';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import '@fortawesome/fontawesome-free/css/fontawesome.min.css';
-import { MainMenuItem, MainMenu } from './components/MainMenu/MainMenu';
 import { HashRouter, Switch, Route } from 'react-router-dom';
 import HomePage from './components/HomePage/HomePage';
 import ContactPage from './components/ContactPage/ContactPage';
@@ -16,18 +15,11 @@ import UserLoginPage from './components/UserLoginPage/UserLoginPage';
 import UserRegistrationPage from './components/UserRegistrationPage/UserRegistrationPage';
 import AdminLoginPage from './components/AdminLoginPage/AdminLoginPage';
 import AdministratorDashboard from './components/AdministratorDashboard/AdministratorDashboard';
-
-const menuItems = [
-  new MainMenuItem("Home", "/"),
-  new MainMenuItem("Contact", "/contact/"),
-  new MainMenuItem("User log in", "/user/login/"),
-  new MainMenuItem("Admin log in", "/administrator/login/"),
-  new MainMenuItem("Register", "/user/register/"),
-];
+import AdministratorDashboardCategory from './components/AdministratorDashboardCategory/AdministratorDashboardCategory';
+import AdministratorDashboardPhone from './components/AdministratorDashboardPhone/AdministratorDashboardPhone';
 
 ReactDOM.render(
   <React.StrictMode>
-    <MainMenu items={menuItems} />
     <HashRouter>
       <Switch>
         <Route exact path="/" component={HomePage} />
@@ -36,7 +28,10 @@ ReactDOM.render(
         <Route path="/administrator/login" component={AdminLoginPage} />
         <Route path="/user/register" component={UserRegistrationPage} />
         <Route path="/category/:cId" component={CategoryPage} />
-        <Route path="/administrator/dashboard" component={AdministratorDashboard} />
+        <Route exact path="/administrator/dashboard" component={AdministratorDashboard} />
+        <Route path="/administrator/dashboard/category" component={AdministratorDashboardCategory} />
+        <Route exact path="/administrator/dashboard/phones" component={AdministratorDashboardPhone} />
+
 
       </Switch>
     </HashRouter>

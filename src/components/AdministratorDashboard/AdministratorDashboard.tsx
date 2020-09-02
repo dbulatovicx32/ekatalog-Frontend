@@ -4,6 +4,7 @@ import { faHome } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Redirect, Link } from 'react-router-dom';
 import api, { ApiResponse } from '../../api/api';
+import RoledMainmenu from '../RoledMainMenu/RoledMainMenu';
 
 
 interface AdministratorDashboardState {
@@ -56,6 +57,7 @@ class AdministratorDashboard extends React.Component {
 
         return (
             <Container>
+                <RoledMainmenu role="administrator"/>
                 <Card>
                     <Card.Body>
                         <Card.Title>
@@ -64,6 +66,8 @@ class AdministratorDashboard extends React.Component {
 
                         <ul>
                             <li><Link to="/administrator/dashboard/category/">Categories</Link></li>
+                            <li><Link to="/administrator/dashboard/networks/">Networks</Link></li>
+                            <li><Link to="/administrator/dashboard/phones/">Phones</Link></li>
                         </ul>
                     </Card.Body>
                 </Card>

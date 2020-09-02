@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Card, Row, Col, FormGroup, Form, Button } from 'react-bootstrap';
+import { Container, Card, Row, Col, Form, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBoxOpen, faSearch } from '@fortawesome/free-solid-svg-icons';
 import PhoneType from '../../types/PhoneType';
@@ -7,6 +7,7 @@ import CategoryType from '../../types/CategoryType';
 import api, { ApiResponse } from '../../api/api';
 import { Redirect, Link } from 'react-router-dom';
 import { ApiConfig } from '../../config/api.config';
+import RoledMainmenu from '../RoledMainMenu/RoledMainMenu';
 
 interface CategoryPageProperties {
     match: {
@@ -34,7 +35,7 @@ interface CategoryPageState {
 interface PhoneDto {
     phoneId?: number;
     name?: string;
-    os?: string;
+    os?: "Android" | "iOS" | "Windows" | "Blackberry";
     ramSize?: number;
     storageSize?: number;
     screenSize?: number;
@@ -77,6 +78,7 @@ export default class CategoryPage extends React.Component<CategoryPageProperties
 
         return (
             <Container>
+                <RoledMainmenu role="user"/>
                 <Card>
                     <Card.Body>
                         <Card.Title>

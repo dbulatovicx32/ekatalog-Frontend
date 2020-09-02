@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import api, { ApiResponse } from '../../api/api';
 import { Link } from 'react-router-dom';
+import RoledMainmenu from '../RoledMainMenu/RoledMainMenu';
 
 interface UserRegistrationPageState {
     isRegistrationComplete: boolean;
@@ -76,6 +77,7 @@ export default class UserRegistrationPage extends React.Component {
     render() {
         return (
             <Container>
+                <RoledMainmenu role="visitor"/>
                 <Col md={{ span: 8, offset: 2 }}>
                     <Card>
                         <Card.Body>

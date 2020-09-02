@@ -5,15 +5,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import CategoryType from '../../types/CategoryType';
 import { Redirect, Link } from 'react-router-dom';
 import api, { ApiResponse } from '../../api/api';
+import RoledMainmenu from '../RoledMainMenu/RoledMainMenu';
+import ApiCategoryDto from '../../dtos/ApiCategoryDto';
 
 interface HomePageState {
   isUserLoggedIn: boolean;
   categories: CategoryType[];
-}
-
-interface CategoryDto {
-  categoryId: number;
-  name: string;
 }
 
 export default class HomePage extends React.Component {
@@ -51,6 +48,7 @@ export default class HomePage extends React.Component {
 
     return (
       <Container>
+        <RoledMainmenu role="user"/>
         <Card>
           <Card.Body>
             <Card.Title>
@@ -92,11 +90,11 @@ export default class HomePage extends React.Component {
         this.setLogginState(false);
         return;
       }
-      this.storeCategoriesIntoTheState(res.data);
+      this.putCategoriesIntoTheState(res.data);
     });
   }
 
-  private storeCategoriesIntoTheState(apiCategories: CategoryDto[]) {
+  private putCategoriesIntoTheState(apiCategories: ApiCategoryDto[]) {
     if (!apiCategories || apiCategories.length === 0) {
       this.setCategories([]);
       return;
